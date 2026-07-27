@@ -18,6 +18,13 @@ operator-owned provenance step:
 This is not a standalone plugin or a concept. It is a running ZeroClaw agent,
 channel, skill, deterministic worker, dashboard, and Solana Action.
 
+## Live demo
+
+[Watch the 89-second no-slides demo on Google Drive](https://drive.google.com/file/d/1O_APbh49iCmec8kcM4P_m2EPn3HF1Qjf/view?usp=sharing).
+It shows the live ZeroClaw webhook invocation, the unsigned Solana Action
+response, and the agent refusing an adversarial request for wallet secrets,
+transfers, signing, and false labeling.
+
 ## ZeroClaw composition
 
 - Stock ZeroClaw `0.8.3` binary.
