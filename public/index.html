@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Custody-free Solana provenance through a self-hosted ZeroClaw agent." />
+    <title>ProofGuard — ZeroClaw × Solana</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header>
+        <div class="eyebrow">ZEROCLAW × SOLANA DEVNET</div>
+        <h1>Proof before trust.</h1>
+        <p class="lede">
+          A self-hosted agent that fingerprints public media, prepares an
+          unsigned Solana attestation, and leaves every signing decision with
+          the human wallet.
+        </p>
+      </header>
+
+      <section class="status-row" aria-label="Safety summary">
+        <div><span class="dot"></span> Live webhook channel</div>
+        <div>T1 Build</div>
+        <div>No keys held</div>
+        <div>20 MiB fetch cap</div>
+      </section>
+
+      <section class="console">
+        <div class="console-head">
+          <div>
+            <span class="kicker">CHANNEL</span>
+            <strong>ProofGuard webhook</strong>
+          </div>
+          <button id="copy-demo" type="button">Load demo</button>
+        </div>
+        <div id="messages" class="messages" aria-live="polite">
+          <article class="message agent">
+            <span>PROOFGUARD</span>
+            <p>
+              Send <code>attest &lt;https-url&gt; for wallet &lt;public-key&gt;</code>,
+              <code>verify</code>, or <code>status</code>. I never request a
+              seed phrase or sign for you.
+            </p>
+          </article>
+        </div>
+        <form id="chat-form">
+          <label for="message">Message the locally running ZeroClaw agent</label>
+          <div class="composer">
+            <textarea
+              id="message"
+              rows="3"
+              required
+              placeholder="attest https://example.com/asset.png for wallet …"
+            ></textarea>
+            <button type="submit">Send</button>
+          </div>
+          <p id="form-status" role="status"></p>
+        </form>
+      </section>
+
+      <section class="action-panel">
+        <div class="action-copy">
+          <span class="kicker">SOLANA ACTION</span>
+          <h2>Inspect before signing.</h2>
+          <p>
+            Build the same unsigned Memo transaction through a standards-compatible
+            Action endpoint. Only a public wallet address is accepted here.
+          </p>
+          <ul>
+            <li>GET returns Action metadata</li>
+            <li>POST accepts <code>{ "account": "public-key" }</code></li>
+            <li>The wallet remains the sole signer and broadcaster</li>
+          </ul>
+        </div>
+        <form id="action-form" class="action-form">
+          <label for="asset-url">Public HTTPS media URL</label>
+          <input
+            id="asset-url"
+            type="url"
+            required
+            value="https://avatars.githubusercontent.com/u/58729655?s=256"
+          />
+          <label for="wallet-address">Solana public key</label>
+          <input
+            id="wallet-address"
+            required
+            value="7YttLkHDoV7G1K9JdZP2YQ3pvR8Jx6eM8xgW4tNY4nZa"
+          />
+          <div class="action-buttons">
+            <button type="submit">Build unsigned transaction</button>
+            <button id="copy-payload" type="button" disabled>Copy payload</button>
+          </div>
+          <p id="action-status" role="status"></p>
+          <pre id="action-output" hidden></pre>
+        </form>
+      </section>
+
+      <section class="architecture">
+        <div>
+          <span class="number">01</span>
+          <h2>Opaque bytes</h2>
+          <p>HTTPS-only fetch, redirect revalidation, DNS guard, hard byte cap.</p>
+        </div>
+        <div>
+          <span class="number">02</span>
+          <h2>Canonical proof</h2>
+          <p>SHA-256 asset fingerprint plus a deterministic compact manifest.</p>
+        </div>
+        <div>
+          <span class="number">03</span>
+          <h2>Human signature</h2>
+          <p>Memo transaction is built unsigned. The wallet remains the authority.</p>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

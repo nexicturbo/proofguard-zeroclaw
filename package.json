@@ -1,0 +1,24 @@
+{
+  "name": "proofguard-zeroclaw",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A custody-free ZeroClaw channel that prepares and verifies Solana media-provenance attestations.",
+  "scripts": {
+    "start": "node src/server.mjs",
+    "proofguard": "node src/proofguard.mjs",
+    "test": "node --test",
+    "check": "node --check src/proofguard.mjs && node --check src/server.mjs && node --test"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.98.4",
+    "express": "^5.1.0",
+    "undici": "^8.9.0"
+  },
+  "overrides": {
+    "uuid": "^11.1.1"
+  }
+}
